@@ -16,13 +16,38 @@ It is based on the [Chef Bento](http://chef.github.io/bento/) [ubuntu-18.04](htt
 - [**Vagrant Cloud**](#vagrant-cloud)
 - [**Automated Build**](#automated-build)
 - [**Tools**](#tools)
-  - [Build it manually](#build-it-manually)
-  - [Deploy](#deploy)
+- [Build from source](#build-from-source)
+- [Push to Vagrant Cloud](#push-to-vagrant-cloud)
 
-## **Requisites**
+## **Quickstart**
 
-- VirtualBox ([download here](https://www.virtualbox.org/wiki/Downloads))
-- Vagrant ([download here](https://www.vagrantup.com/downloads.html))
+To prepare your host system to start this VM, you can follow this quickstart guide.
+
+### **Windows**
+
+1. Install [**Chocolatey**](https://chocolatey.org) (a package manager for Windows):
+
+   Check the [official guide](https://chocolatey.org/install) for instructions. At the time of writing, you just have to run the command below
+   > Open **PowerShell as Administrator**
+
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+   ```
+
+2. Install **VirtualBox** and **Vagrant**
+   > Open **PowerShell as Administrator**
+
+   ```powershell
+   choco install virtualbox vagrant
+   ```
+
+3. Choose a good folder and start the box
+   > Open **PowerShell**
+
+   ```powershell
+   mkdir ~/Repos/my-ubuntu1804-4dev | cd
+   vagrant init felipecassiors/ubuntu1804-4dev
+   ```
 
 ## **Vagrant Cloud**
 
@@ -66,7 +91,7 @@ The whole process is:
 - jq
 - Latest VirtualBox Guest Additions
 
-### Build it manually
+## Build from source
 
 Clone the repository, start a new terminal there, and run:
 
@@ -80,7 +105,7 @@ After the provision is done, you can turn the VM into a box:
 vagrant package
 ```
 
-### Deploy
+## Push to Vagrant Cloud
 
 If you want to deploy it in your Vagrant Cloud, you can use the [`ci/deploy.sh`](scripts/deploy.sh). It needs the `VAGRANT_CLOUD_TOKEN` environment variable to be set before running.
 
